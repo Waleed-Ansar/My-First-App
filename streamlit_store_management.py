@@ -8,7 +8,7 @@ def load_stock():
     if os.path.exists(FILE_NAME):
         return pd.read_csv(FILE_NAME)
     else:
-        return pd.DataFrame(columns=["Item", "Quantity", "Price"])
+        return pd.DataFrame(columns=["Item", "Price"])
 
 def save_stock(stock_df):
     stock_df.to_csv(FILE_NAME, index=False)
@@ -73,6 +73,7 @@ if st.session_state.show_add_stock:
         save_stock(st.session_state.stock)
         st.success(f"Added {item} at {price} each!")
         st.session_state.show_add_stock = False
+
 
 
 # streamlit run streamlit_store_management.py
