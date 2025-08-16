@@ -19,7 +19,7 @@ if "stock" not in st.session_state:
 if "cart" not in st.session_state:
     st.session_state.cart = []   # empty cart after creating bill for new purchase
 
-st.title("🛒 Super Store Management System")
+st.title("🛒 Super Store")
 
 # Costumer Section
 st.header("🛍️ Add Items to Cart")
@@ -51,7 +51,7 @@ if st.session_state.cart:
 
 st.sidebar.title("📊 Stock Management")
 
-if st.sidebar.button("Show Stock Inquiry"):
+if st.sidebar.button("Show Stock"):
     st.sidebar.write(st.session_state.stock)
 
 # Adding Stock Section
@@ -77,3 +77,4 @@ if st.session_state.show_add_stock:
 
 
 # streamlit run streamlit_store_management.py
+
