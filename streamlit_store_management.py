@@ -19,10 +19,10 @@ if "stock" not in st.session_state:
 if "cart" not in st.session_state:
     st.session_state.cart = []   # empty cart after creating bill for new purchase
 
-st.title("🛒 Super Store")
+st.title("Super Store")
 
 # Costumer Section
-st.header("🛍️ Add Items to Cart")
+st.header("Add Items to Cart")
 
 if not st.session_state.stock.empty:
     selected_item = st.selectbox("Select Item:", st.session_state.stock["Item"].unique())
@@ -38,18 +38,18 @@ else:
 
 # Cart Display & Bill Section
 if st.session_state.cart:
-    st.subheader("🛒 Cart")
+    st.subheader("Cart")
     cart_df = pd.DataFrame(st.session_state.cart, columns=["Item", "Quantity", "Price", "Total"])
     st.table(cart_df)
     total_bill = cart_df["Total"].sum()
 
-    if st.button("✅ Create Bill"):
+    if st.button("Create Bill"):
         st.success(f"Bill Created! Total = {total_bill}")
 
         # save_stock(st.session_state.stock)
         st.session_state.cart = []
 
-st.sidebar.title("📊 Stock Management")
+st.sidebar.title("Stock Management")
 
 if st.sidebar.button("Show Stock"):
     st.sidebar.write(st.session_state.stock)
@@ -77,4 +77,5 @@ if st.session_state.show_add_stock:
 
 
 # streamlit run streamlit_store_management.py
+
 
