@@ -66,6 +66,8 @@ with left_col:
             if any(char.isupper() for char in stock_name):
                 symbol = stock_name
                 fetch_stock(stock_symbol=symbol)
+            else:
+                call_error()
         else:
             query = file.query(f"Keys == '{stock_name}'")
             symbol = query.iloc[0, 1]
@@ -75,6 +77,7 @@ fetch_stock('AMD') # Default Display
 
 
 # streamlit run stock_app.py
+
 
 
 
