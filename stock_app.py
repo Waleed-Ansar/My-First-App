@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 import yfinance as yf
 
-path = "C:/Users/walee/Downloads/Stocks.csv"
-file = pd.read_csv(path)
+# path = "C:/Users/walee/Downloads/Stocks.csv"
+file = pd.read_csv('Stocks.csv')
 
 row_1 = st.columns(5)
 st.title("Live Stock Data\n")
@@ -66,3 +66,4 @@ fetch_stock('AMD') # Default Display
 
 
 # streamlit run stock_app.py
+
