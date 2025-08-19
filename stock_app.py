@@ -63,19 +63,19 @@ with left_col:
 
     if search_button:
         if len(stock_name) <= 5:
-            symbol = stock_name
-        else:
-            try:
-                query = file.query(f"Keys == '{stock_name}'")
-                symbol = query.iloc[0, 1]
+            if any(char.isupper() for char in stock_name):
+                symbol = stock_name
                 fetch_stock(stock_symbol=symbol)
-            except:
-                call_error()
+        else:
+            query = file.query(f"Keys == '{stock_name}'")
+            symbol = query.iloc[0, 1]
+            fetch_stock(stock_symbol=symbol)
 fetch_stock('AMD') # Default Display
 
 
 
 # streamlit run stock_app.py
+
 
 
 
