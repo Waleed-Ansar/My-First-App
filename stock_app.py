@@ -10,19 +10,22 @@ st.title("Live Stock Data\n")
 
 def fetch_stock(stock_symbol):
     with left_col:
-        ticker_symbol = stock_symbol
-        ticker_data = yf.Ticker(ticker_symbol)
-        ticker_dataframe = ticker_data.history(start='2024-8-14', end='2025-9-18')
-        
-        live_price = ticker_data.info['regularMarketPrice']
-        st.subheader(f"{ticker_symbol} Live Price:")
-        st.markdown(f"#### {live_price}$\n")
-        
-        st.markdown(f"#### {ticker_symbol} Volume:")
-        st.line_chart(ticker_dataframe.Volume)
-        
-        st.markdown(f"#### {ticker_symbol} Closing:")
-        st.line_chart(ticker_dataframe.Close)
+        try:
+            ticker_symbol = stock_symbol
+            ticker_data = yf.Ticker(ticker_symbol)
+            ticker_dataframe = ticker_data.history(start='2024-8-14', end='2025-9-18')
+            
+            live_price = ticker_data.info['regularMarketPrice']
+            st.subheader(f"{ticker_symbol} Live Price:")
+            st.markdown(f"#### {live_price}$\n")
+            
+            st.markdown(f"#### {ticker_symbol} Volume:")
+            st.line_chart(ticker_dataframe.Volume)
+            
+            st.markdown(f"#### {ticker_symbol} Closing:")
+            st.line_chart(ticker_dataframe.Close)
+        except:
+            st.error("Cannot fetch details. Error: Incorrect Name/Symbol")
 
 left_col, right_col = st.columns([3, 1])
 
@@ -58,12 +61,16 @@ with left_col:
         if len(stock_name) <= 5:
             symbol = stock_name
         else:
-            query = file.query(f"Keys == '{stock_name}'")
-            symbol = query.iloc[0, 1]
-        fetch_stock(stock_symbol=symbol)
+            try:
+                query = file.query(f"Keys == '{stock_name}'")
+                symbol = query.iloc[0, 1]
+                fetch_stock(stock_symbol=symbol)
+            except:
+                call_error()
 fetch_stock('AMD') # Default Display
 
 
 
 # streamlit run stock_app.py
+
 
