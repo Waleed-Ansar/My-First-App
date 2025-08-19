@@ -2,17 +2,20 @@ import streamlit as st
 import pandas as pd
 import yfinance as yf
 
-# path = "C:/Users/walee/Downloads/Stocks.csv"
 file = pd.read_csv('Stocks.csv')
 
 row_1 = st.columns(5)
 st.title("Live Stock Data\n")
+
+if "last_symbol" not in st.session_state:
+    st.session_state.last_symbol = "AMD"
 
 def call_error():
     with right_col:
         st.error("Error: Enter Correct Name/Symbol")
 
 def fetch_stock(stock_symbol):
+    st.session_state.last_symbol = stock_symbol
     with left_col:
         try:
             ticker_symbol = stock_symbol
@@ -72,13 +75,4 @@ with left_col:
             query = file.query(f"Keys == '{stock_name}'")
             symbol = query.iloc[0, 1]
             fetch_stock(stock_symbol=symbol)
-fetch_stock('AMD') # Default Display
-
-
-
-# streamlit run stock_app.py
-
-
-
-
-
+fetch_stock(st.session_state.last_symbol) # Default Display
