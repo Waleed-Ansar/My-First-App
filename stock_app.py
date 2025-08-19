@@ -8,6 +8,10 @@ file = pd.read_csv('Stocks.csv')
 row_1 = st.columns(5)
 st.title("Live Stock Data\n")
 
+def call_error():
+    with right_col:
+        st.error("Error: Enter Correct Name/Symbol")
+
 def fetch_stock(stock_symbol):
     with left_col:
         try:
@@ -72,5 +76,6 @@ fetch_stock('AMD') # Default Display
 
 
 # streamlit run stock_app.py
+
 
 
