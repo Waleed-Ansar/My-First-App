@@ -73,9 +73,3 @@ if st.session_state.show_add_stock:
         save_stock(st.session_state.stock)
         st.success(f"Added {item} at {price} each!")
         st.session_state.show_add_stock = False
-
-
-
-# streamlit run streamlit_store_management.py
-
-
