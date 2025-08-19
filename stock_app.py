@@ -64,4 +64,5 @@ with left_col:
 fetch_stock('AMD') # Default Display
 
 
+
 # streamlit run stock_app.py
